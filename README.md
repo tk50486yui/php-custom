@@ -1,5 +1,7 @@
 # PHP Custom Framework
 
+PHP >= 5.6
+
 ## Router
 
 public/index.php
