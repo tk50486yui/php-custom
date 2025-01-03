@@ -36,7 +36,7 @@ class Request
         return $body;
     }
 
-    /** 自動消除前後空格 */
+    // 自動消除前後空格
     private function autoTrimBody($body)
     {
         if (is_array($body)) {

@@ -42,7 +42,7 @@ class BaseRepo
     }
 
     /**
-     * $sql SQL查詢語法
+     * $sql SQL 查詢語法
      * $params 若不帶參數，則直接用 fetch_assoc 方法
      * $types  s i d b 若 $params 有三個參數，前兩個字串，第三個是整數，則 $types 可以傳 ssi
      */
