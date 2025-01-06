@@ -36,7 +36,6 @@ class Request
         return $body;
     }
 
-    // 自動消除前後空格
     private function autoTrimBody($body)
     {
         if (is_array($body)) {
@@ -89,7 +88,6 @@ class Request
         return isset($this->query[$key]) ? $this->query[$key] : $default;
     }
 
-    // 有做過濾
     public function body($key = null, $default = null)
     {
         if ($key === null) {
@@ -98,7 +96,6 @@ class Request
         return isset($this->body[$key]) ? $this->body[$key] : $default;
     }
 
-    // 原始資料 沒有過濾
     public function text($key = null, $default = null)
     {
         if ($key === null) {

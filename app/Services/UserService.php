@@ -25,25 +25,21 @@ class UserService extends MyService
 
     public function store($data)
     {
-        if (empty($data['email']) || empty($data['name'])) {
-            $this->response->error('Failed', 422);
-        }
-
         try {
-            $this->memberRepo->begin();
-            $member = $this->memberRepo->store($data);
-            $this->memberRepo->commit();
+            $this->userRepo->begin();
+            $user = $this->userRepo->store($data);
+            $this->userRepo->commit();
         } catch (Exception $e) {
-            $this->memberRepo->rollback();
+            $this->userRepo->rollback();
             $this->response->error($e->getMessage(), 500);
         }
 
-        return $member;
+        return $user;
     }
 
     public function update($data, $id)
     {
-        return $this->memberRepo->update($data, $id);
+        return $this->userRepo->update($data, $id);
     }
 
 }

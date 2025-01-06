@@ -1,6 +1,10 @@
 # PHP Custom Framework
 
+Easy Framework.
+
 PHP >= 5.6
+
+DB Driver: mysqli
 
 ## Router
 
@@ -15,12 +19,7 @@ $router->patch('user/{id}', 'UserController', 'updateField');
 $router->delete('user/{id}', 'UserController', 'destroy');
 ```
 
-```php
-public function find(Request $request, $id)
-{
-    // UserController
-}
-```
+## Controller
 
 ```php
 $router->get('user/{id}/children/{name}', 'UserController', 'findChild');
@@ -29,7 +28,7 @@ $router->get('user/{id}/children/{name}', 'UserController', 'findChild');
 ```php
 public function findChild(Request $request, $id, $name)
 {
-    // UserController
+   // do something
 }
 ```
 
@@ -41,13 +40,20 @@ $router->get('user', 'UserController', 'findAll', [ExampleMiddleware::class, Exa
 ```
 
 ```php
-
 public function handle($request)
 {
-    // Middleware
+    // do something
 
     return $request;
 }
+```
+
+## Router Group
+
+```php
+$router->group('test', [TestMiddleware::class], function ($router) {
+    $router->get('', 'HomeController', 'index');
+});
 ```
 
 ## Request
@@ -55,8 +61,8 @@ public function handle($request)
 ```php
 $request->all();
 $request->body();
-$request->body('name', 'default');
-$request->query('name', 'default');
+$request->body('name', 'default'); // Request Body
+$request->query('name', 'default'); // ?name=123456
 $request->files('file');
 $request->text('text', '');
 $request->headers('Authorization');
@@ -69,21 +75,18 @@ $request->bearerToken();
 $this->response->json($output); // 200
 $this->response->json(['success' => false, 'message' => 'error'], 500);
 $this->response->error('Unauthorized', 401);
-
-$this->response->no('message', 500);
-$this->response->ok('message', 200, $output);
 ```
 
 ## Guard
 
 ```php
-$guard = new Guard('admin');
+$guard = new Guard('admin'); // Session
 $guard->id = 1;
 $guard->name = 'Alice';
 ```
 
 ```php
-$admin = $this->getGuard('admin');
-echo $admin['id']; // 1
-echo $admin['name']; // Alice
+$admin = $this->getGuard('admin');  // Session
+echo $admin['id'];
+echo $admin['name'];
 ```

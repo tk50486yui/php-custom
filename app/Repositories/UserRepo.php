@@ -11,24 +11,14 @@ class UserRepo extends MyRepo
 
     public function find($id)
     {
-        $sql = "SELECT
-                    *
-                FROM
-                    user
-                WHERE
-                   id = ?";
+        $sql = "SELECT  * FROM user WHERE id = ?";
 
         return $this->getFirst($this->executeQuery($sql, [$id]));
     }
 
     public function findAll()
     {
-        $sql = "SELECT
-                    *
-                FROM
-                    user
-                ORDER BY
-                    id ASC";
+        $sql = "SELECT * FROM user ORDER BY id ASC";
 
         return $this->toArray($this->executeQuery($sql));
     }
