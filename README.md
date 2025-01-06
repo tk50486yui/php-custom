@@ -8,7 +8,7 @@ public/index.php
 
 ```php
 $router->get('user', 'UserController', 'findAll');
-$router->get('user/{id}', 'UserController', 'findById');
+$router->get('user/{id}', 'UserController', 'find');
 $router->post('user', 'UserController', 'store');
 $router->put('user/{id}', 'UserController', 'update');
 $router->patch('user/{id}', 'UserController', 'updateField');
@@ -16,7 +16,21 @@ $router->delete('user/{id}', 'UserController', 'destroy');
 ```
 
 ```php
+public function find(Request $request, $id)
+{
+    // UserController
+}
+```
+
+```php
 $router->get('user/{id}/children/{name}', 'UserController', 'findChild');
+```
+
+```php
+public function findChild(Request $request, $id, $name)
+{
+    // UserController
+}
 ```
 
 ## Middleware
@@ -24,6 +38,16 @@ $router->get('user/{id}/children/{name}', 'UserController', 'findChild');
 ```php
 $router->get('user', 'UserController', 'findAll', [ExampleMiddleware::class]);
 $router->get('user', 'UserController', 'findAll', [ExampleMiddleware::class, Example2Middleware::class]);
+```
+
+```php
+
+public function handle($request)
+{
+    // Middleware
+
+    return $request;
+}
 ```
 
 ## Request
